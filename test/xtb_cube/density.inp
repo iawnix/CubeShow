@@ -1,0 +1,16 @@
+$cube
+  step=.3779451977
+  boff=6
+  pthr=0.0
+$end
+$write
+  density=true
+  spin density=false
+  fod=false
+  charges=false
+  mulliken=false
+  geosum=false
+  inertia=false
+  mos=false
+  wiberg=false
+$end

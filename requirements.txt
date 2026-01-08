@@ -1,0 +1,12 @@
+numpy==2.3.5
+PyQt6==6.10.1
+PyQt6-Qt6==6.10.1
+PyQt6_sip==13.10.3
+vispy==0.15.2
+scikit-image==0.25.2
+rdkit==2025.3.6
+rich==14.1.0
+scipy==1.16.3
+
+
+
