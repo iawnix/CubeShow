@@ -204,10 +204,14 @@ def init_cube_mesh(scale: int, smooth_method: str, cut: float = 0.005, band: flo
     else:
         if "SCATTER_SCALE_{}".format(scale) not in ECLOUD_CACHE.keys():
             cub_smoothed = smooth_grid_cube_scale(ECLOUD_CUBE, scale=scale, method=smooth_method)
+            ECLOUD_VALUE = cub_smoothed.grid_data
             COORDS = gen_grid_xyz(cub_smoothed)
             # 为scatter创建缓存
-            ECLOUD_CACHE["ECLOUD_SCALE_{}".format(scale)]["COORDS"] = COORDS
-            ECLOUD_CACHE["ECLOUD_SCALE_{}".format(scale)]["ECLOUD_VALUE"] = ECLOUD_VALUE
+            #rp("Info\\[iaw]>: smooth scale is {}".format(scale))
+            ECLOUD_CACHE["ECLOUD_SCALE_{}".format(scale)] = {
+                 "COORDS": COORDS
+                , "ECLOUD_VALUE": ECLOUD_VALUE
+            }
         else:
             COORDS = ECLOUD_CACHE["ECLOUD_SCALE_{}".format(scale)]["COORDS"]
             ECLOUD_VALUE = ECLOUD_CACHE["ECLOUD_SCALE_{}".format(scale)]["ECLOUD_VALUE"]
@@ -250,7 +254,7 @@ def update_display():
         elif ECLOUD_DISPLAY_MODE == "mesh": 
             init_cube_mesh(scale= ECLOUD_SMOOTH_FACTOR, smooth_method = ECLOUD_SMOOTH_METHOD, cut=ECLOUD_CUT, band=ECLOUD_BAND)
     except Exception as e:
-        rp("Error\\[iaw]>: Update display Error: {}.".format(e))       
+        rp("Error\\[iaw]>: Update display Error: {}".format(e))       
         
 
 class ControlPanel(QWidget):
